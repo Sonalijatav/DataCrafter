@@ -13,7 +13,7 @@ const AuthComponent = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  // const backendUrl = 'http://localhost:5000/api/users';
+  // const backendUrl = 'http://localhost:5000';
   const backendUrl = import.meta.env.VITE_API_URL;
 
   const getContext = () => {
@@ -26,7 +26,7 @@ const AuthComponent = ({ onLogin }) => {
     setError('');
     
     try {
-      const res = await fetch(`${backendUrl}/send-otp`, {
+      const res = await fetch(`${backendUrl}/api/users/send-otp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, context: getContext() }),
@@ -119,7 +119,7 @@ const AuthComponent = ({ onLogin }) => {
       
       try {
         setLoading(true);
-        const res = await fetch(`${backendUrl}/login-password`, {
+        const res = await fetch(`${backendUrl}/api/users/login-password`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),
@@ -152,7 +152,7 @@ const AuthComponent = ({ onLogin }) => {
 
       try {
         setLoading(true);
-        const res = await fetch(`${backendUrl}/verify-otp-signup`, {
+        const res = await fetch(`${backendUrl}/api/users/verify-otp-signup`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, otp, password }),

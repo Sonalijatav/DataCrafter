@@ -16,6 +16,8 @@ const AdminPanel = ({ user }) => {
   const BASE_API = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
+    console.log("API Base URL:", BASE_API);
+
     if (user?.email === 'sonalijatav100@gmail.com') {
       fetchAdminData();
     }
