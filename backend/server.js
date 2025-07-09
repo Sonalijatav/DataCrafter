@@ -8,7 +8,17 @@ const cors = require('cors');
 const User = require('./models/User');
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+
+app.use(cors({
+  origin: "*"
+}));
+
+
+// app.use(cors({
+//   origin: "https://data-crafter.vercel.app/", // Vercel frontend URL
+//   credentials: true,
+// }));
 
 // app.use(express.json());
 
