@@ -13,7 +13,8 @@ const AuthComponent = ({ onLogin }) => {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const backendUrl = 'http://localhost:5000/api/users';
+  // const backendUrl = 'http://localhost:5000/api/users';
+  const backendUrl = import.meta.env.VITE_API_URL;
 
   const getContext = () => {
     return mode === 'signup' ? 'signup' : 'reset';
