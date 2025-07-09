@@ -52,11 +52,11 @@ const AuthComponent = ({ onLogin }) => {
   
     try {
       setLoading(true);
-      let endpoint = `${backendUrl}/verify-otp`;
+      let endpoint = `${backendUrl}/api/users/verify-otp`;
       let body = { email, otp };
   
       if (mode === 'signup') {
-        endpoint = `${backendUrl}/verify-otp-signup`;
+        endpoint = `${backendUrl}/api/users/verify-otp-signup`;
       }
   
       const res = await fetch(endpoint, {
@@ -89,7 +89,7 @@ const AuthComponent = ({ onLogin }) => {
     
     try {
       setLoading(true);
-      const res = await fetch(`${backendUrl}/reset-password`, {
+      const res = await fetch(`${backendUrl}/api/users/reset-password`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, newPassword: password }),
