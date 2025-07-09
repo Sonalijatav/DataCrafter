@@ -20,6 +20,8 @@ const App = () => {
   const [activeTab, setActiveTab] = useState('upload');
   const [isAdminMode, setIsAdminMode] = useState(false);
 
+  const BASE_URL = import.meta.env.VITE_API_URL;
+
   // Check for existing token on component mount
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -27,7 +29,8 @@ const App = () => {
   
     const verifyToken = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/auth/verify', {
+        // const res = await fetch('http://localhost:5000/api/auth/verify', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/verify`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
