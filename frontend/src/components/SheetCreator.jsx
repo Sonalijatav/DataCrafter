@@ -9,6 +9,11 @@ const SheetCreator = ({ onCreateSheet }) => {
   const [tableData, setTableData] = useState([]);
   const [isCreating, setIsCreating] = useState(false);
 
+
+  // const BASE_API ="http://localhost:5000";
+  const BASE_API = import.meta.env.VITE_API_URL;
+
+
   // Update column names and table data when rows/cols change
   useEffect(() => {
     setColumnNames(Array.from({ length: cols }, (_, i) => `Column ${i + 1}`));
@@ -55,7 +60,7 @@ const SheetCreator = ({ onCreateSheet }) => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/users/create-sheet', {
+      const res = await fetch(`${BASE_API}/api/users/create-sheet`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

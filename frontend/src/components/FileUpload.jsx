@@ -9,6 +9,11 @@ const FileUpload = ({ onFileLoad }) => {
   const [isUploading, setIsUploading] = useState(false);
 
 
+  // const BASE_API ="http://localhost:5000";
+  const BASE_API = import.meta.env.VITE_API_URL;
+
+
+
   const handleFile = async (file) => {
     if (!file) return;
     
@@ -50,7 +55,7 @@ const FileUpload = ({ onFileLoad }) => {
           return;
         }
 
-        const res = await fetch('http://localhost:5000/api/users/upload', {
+        const res = await fetch(`${BASE_API}/api/users/upload`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

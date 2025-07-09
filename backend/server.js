@@ -15,15 +15,16 @@ const app = express();
 //   credentials: true
 // }));
 
-// app.use(cors({
-//   origin: "https://data-crafter.vercel.app/", // Vercel frontend URL
-//   credentials: true,
-
-// }));
 app.use(cors({
-  origin: true, // Automatically reflects request origin
+  origin: "https://data-crafter.vercel.app", // Vercel frontend URL
   credentials: true,
+
 }));
+
+// app.use(cors({
+//   origin: true, // Automatically reflects request origin
+//   credentials: true,
+// }));
 
 
 // app.use(express.json());

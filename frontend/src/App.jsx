@@ -21,6 +21,8 @@ const App = () => {
   const [isAdminMode, setIsAdminMode] = useState(false);
 
   const BASE_URL = import.meta.env.VITE_API_URL;
+  // const BASE_URL ="http://localhost:5000";
+  
 
   // Check for existing token on component mount
   useEffect(() => {

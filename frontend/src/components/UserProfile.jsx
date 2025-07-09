@@ -8,6 +8,10 @@ const UserProfile = ({ userEmail, onOpenSheet }) => {
   const [loading, setLoading] = useState(true);
   const [deletingItems, setDeletingItems] = useState(new Set());
 
+  // const BASE_API ="http://localhost:5000";
+  const BASE_API = import.meta.env.VITE_API_URL;
+
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -19,7 +23,7 @@ const UserProfile = ({ userEmail, onOpenSheet }) => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/api/files/user/${encodeURIComponent(userEmail)}`,
+          `${BASE_API}/api/files/user/${encodeURIComponent(userEmail)}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -48,7 +52,7 @@ const UserProfile = ({ userEmail, onOpenSheet }) => {
     setDeletingItems(prev => new Set([...prev, `file-${fileId}`]));
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`http://localhost:5000/api/users/files/${fileId}`, {
+      const res = await fetch(`${BASE_API}/api/users/files/${fileId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -74,7 +78,7 @@ const UserProfile = ({ userEmail, onOpenSheet }) => {
     setDeletingItems(prev => new Set([...prev, `sheet-${title}`]));
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`http://localhost:5000/api/users/sheets/${userEmail}/${title}`, {
+      const res = await fetch(`${BASE_API}/api/users/sheets/${userEmail}/${title}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });

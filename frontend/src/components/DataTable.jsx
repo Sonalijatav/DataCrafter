@@ -16,6 +16,9 @@ const DataTable = ({ data, onDataChange, fileName }) => {
   const [cacheInfo, setCacheInfo] = useState({ size: 0, keys: [] });
   const [originalData, setOriginalData] = useState([]);
 
+
+  
+
   useEffect(() => {
     setOriginalData([...data]);
     setFilteredData([]);

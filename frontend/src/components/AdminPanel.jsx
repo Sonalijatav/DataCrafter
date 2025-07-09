@@ -11,6 +11,10 @@ const AdminPanel = ({ user }) => {
   const [error, setError] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  
+  // const BASE_API ="http://localhost:5000";
+  const BASE_API = import.meta.env.VITE_API_URL;
+
   useEffect(() => {
     if (user?.email === 'sonalijatav100@gmail.com') {
       fetchAdminData();
@@ -37,7 +41,7 @@ const AdminPanel = ({ user }) => {
       console.log('Fetching admin data...');
 
       const fetchPromises = [
-        fetch('http://localhost:5000/api/admin/users', { headers }).then(res => {
+        fetch(`${BASE_API}/api/admin/users`, { headers }).then(res => {
           if (!res.ok) throw new Error(`Users fetch failed: ${res.status}`);
           return res.json();
         }).catch(err => {
@@ -45,7 +49,7 @@ const AdminPanel = ({ user }) => {
           return { users: [] };
         }),
         
-        fetch('http://localhost:5000/api/admin/operations', { headers }).then(res => {
+        fetch(`${BASE_API}/api/admin/operations`, { headers }).then(res => {
           if (!res.ok) throw new Error(`Operations fetch failed: ${res.status}`);
           return res.json();
         }).catch(err => {
@@ -53,7 +57,7 @@ const AdminPanel = ({ user }) => {
           return { operations: [] };
         }),
         
-        fetch('http://localhost:5000/api/admin/stats', { headers }).then(res => {
+        fetch(`${BASE_API}/api/admin/stats`, { headers }).then(res => {
           if (!res.ok) throw new Error(`Stats fetch failed: ${res.status}`);
           return res.json();
         }).catch(err => {
@@ -83,7 +87,7 @@ const AdminPanel = ({ user }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+      const response = await fetch(`${BASE_API}/api/admin/users/${userId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -107,7 +111,7 @@ const AdminPanel = ({ user }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/files/${fileId}`, {
+      const response = await fetch(`${BASE_API}/api/admin/users/${userId}/files/${fileId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -136,7 +140,7 @@ const AdminPanel = ({ user }) => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/sheets/${encodeURIComponent(sheetTitle)}`, {
+      const response = await fetch(`${BASE_API}/api/admin/users/${userId}/sheets/${encodeURIComponent(sheetTitle)}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
