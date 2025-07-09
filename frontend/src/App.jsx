@@ -218,7 +218,7 @@ const App = () => {
           </div>
         </div>
         
-        <nav className="bg-gradient-to-r from-white/90 to-cyan-50/90 backdrop-blur-sm">
+        {/* <nav className="bg-gradient-to-r from-white/90 to-cyan-50/90 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex space-x-8">
               {['upload', 'table', 'create', 'profile'].map(tab => {
@@ -240,7 +240,33 @@ const App = () => {
               })}
             </div>
           </div>
-        </nav>
+        </nav> */}
+
+<nav className="bg-gradient-to-r from-white/90 to-cyan-50/90 backdrop-blur-sm border-b border-slate-200">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex overflow-x-auto no-scrollbar space-x-4 sm:space-x-8 py-2 sm:py-0">
+      {['upload', 'table', 'create', 'profile'].map(tab => {
+        const Icon = tabIcons[tab];
+        return (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`flex-shrink-0 py-3 px-3 border-b-2 font-medium text-sm transition-all duration-200 flex items-center space-x-2 ${
+              activeTab === tab
+                ? 'border-cyan-500 text-cyan-600 bg-gradient-to-t from-cyan-100/60 to-transparent'
+                : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 hover:bg-gradient-to-t hover:from-slate-50/60 hover:to-transparent'
+            }`}
+          >
+            <Icon className="w-4 h-4" />
+            <span>{tab.charAt(0).toUpperCase() + tab.slice(1)}</span>
+          </button>
+        );
+      })}
+    </div>
+  </div>
+</nav>
+
+
       </header>
 
       
