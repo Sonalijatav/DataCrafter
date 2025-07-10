@@ -337,6 +337,46 @@ router.post('/verify-otp', async (req, res) => {
   }
 });
 
+////////////
+router.put('/update-file/:fileId', auth, async (req, res) => {
+  const { fileId } = req.params;
+  const { data } = req.body;
+
+  try {
+    const user = await User.findById(req.user._id);
+    const file = user.files.id(fileId);
+
+    if (!file) return res.status(404).json({ error: 'File not found' });
+
+    file.data = data;
+    await user.save();
+
+    res.json({ success: true, message: 'File updated successfully' });
+  } catch (err) {
+    console.error('Update file error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+router.put('/update-sheet/:sheetId', auth, async (req, res) => {
+  const { sheetId } = req.params;
+  const { rows } = req.body;
+
+  try {
+    const user = await User.findById(req.user._id);
+    const sheet = user.sheets.id(sheetId);
+
+    if (!sheet) return res.status(404).json({ error: 'Sheet not found' });
+
+    sheet.rows = rows;
+    await user.save();
+
+    res.json({ success: true, message: 'Sheet updated successfully' });
+  } catch (err) {
+    console.error('Update sheet error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 
 module.exports = router;

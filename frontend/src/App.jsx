@@ -31,7 +31,6 @@ const App = () => {
   
     const verifyToken = async () => {
       try {
-        // const res = await fetch('http://localhost:5000/api/auth/verify', {
         const res = await fetch(`${BASE_URL}/api/auth/verify`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -328,6 +327,8 @@ const App = () => {
                   onSearch={handleSearch}
                   onSort={handleSort}
                   fileName={fileName}
+                  fileOrSheetId={dataId}
+                  type={dataType}
                 />
               </>
             ) : (
